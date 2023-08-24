@@ -5,6 +5,8 @@ const passwordMsg = document.querySelector(".password-msg");
 const sigininMsg = document.querySelector(".signin-status");
 const siginBtn = document.querySelector(".signin-button");
 
+const regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+
 siginBtn.addEventListener("click", signin);
 
 function signin(event) {
@@ -15,11 +17,7 @@ function signin(event) {
   const passwordValue = passwordInput.value;
   let ifSendData = true;
 
-  if (
-    usernameValue.length === 0 ||
-    usernameValue.indexOf("@") === -1 ||
-    usernameValue.indexOf(".") === -1
-  ) {
+  if (regex.test(usernameValue) === false) {
     usernameMsg.innerText = "Please enter a valid email";
     ifSendData = false;
   }
